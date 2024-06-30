@@ -1,0 +1,47 @@
+// Use the database or create it if it doesn't exist
+use inventoryDB
+
+db.createCollection("products",{name : String , description : String , price : Number , quantity : Number , category : String})
+
+db.products.insertMany([
+    { name: "Laptop", description: "High-performance laptop", price: 1200, quantity: 10, category: "Electronics" },
+    { name: "Smartphone", description: "Latest smartphone model", price: 800, quantity: 15, category: "Electronics" },
+    { name: "Headphones", description: "Noise-cancelling headphones", price: 150, quantity: 20, category: "Electronics" },
+    { name: "Backpack", description: "Waterproof hiking backpack", price: 100, quantity: 30, category: "Outdoor Gear" },
+    { name: "Sunglasses", description: "Polarized sunglasses", price: 50, quantity: 25, category: "Fashion" },
+    { name: "Watch", description: "Smartwatch with health tracking", price: 300, quantity: 12, category: "Electronics" },
+    { name: "T-shirt", description: "Cotton t-shirt", price: 20, quantity: 50, category: "Fashion" },
+    { name: "Running Shoes", description: "Lightweight running shoes", price: 80, quantity: 18, category: "Sports" },
+    { name: "Cookware Set", description: "Non-stick cookware set", price: 200, quantity: 8, category: "Kitchen" },
+    { name: "Gaming Console", description: "Next-gen gaming console", price: 500, quantity: 5, category: "Electronics" },
+    { name: "Camera", description: "Mirrorless camera with 4K video", price: 900, quantity: 7, category: "Electronics" },
+    { name: "Backpack", description: "Daypack for commuting", price: 60, quantity: 22, category: "Outdoor Gear" },
+    { name: "Perfume", description: "Elegant fragrance", price: 70, quantity: 40, category: "Beauty" },
+    { name: "Running Shorts", description: "Breathable running shorts", price: 30, quantity: 35, category: "Sports" },
+    { name: "Desk Lamp", description: "LED desk lamp", price: 40, quantity: 14, category: "Home Office" },
+    { name: "Yoga Mat", description: "Non-slip yoga mat", price: 25, quantity: 28, category: "Sports" },
+    { name: "Coffee Maker", description: "Programmable coffee maker", price: 120, quantity: 9, category: "Kitchen" },
+    { name: "Notebook", description: "Hardcover notebook", price: 15, quantity: 60, category: "Stationery" },
+    { name: "Hiking Boots", description: "Waterproof hiking boots", price: 150, quantity: 11, category: "Outdoor Gear" },
+    { name: "Handbag", description: "Leather handbag", price: 250, quantity: 6, category: "Fashion" }
+])
+
+// Querying operations
+
+// Retrieve all products
+db.products.find({})
+
+// Retrieve products with price less than a specified amount (e.g., less than 100)
+db.products.find({ price: { $lt: 100 } })
+
+// Retrieve products with more than a specified quantity in stock (e.g., more than 20)
+db.products.find({ quantity: { $gt: 20 } })
+
+// Update the price of a specific product (e.g., update the price of "Smartphone" to 850)
+db.products.updateOne(
+    { name: "Smartphone" },
+    { $set: { price: 850 } }
+)
+
+// Delete a product from the products collection (e.g., delete the product with name "Handbag")
+db.products.deleteOne({ name: "Handbag" })
